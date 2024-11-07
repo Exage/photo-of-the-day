@@ -17,7 +17,8 @@ const fetchPhoto = async () => {
 
     const photo = {
         id: json.id,
-        url: json.urls.small,
+        url_small: json.urls.small,
+        url_regular: json.urls.regular,
         author: {
             first_name: json.user.first_name,
             last_name: json.user.last_name,
@@ -34,10 +35,10 @@ const displayPhoto = async (photoFetched) => {
     const photo = document.querySelector('.photo')
     const photoWrapper = document.querySelector('.photo__wrapper')
 
-    photoWrapper.style.backgroundImage = `url(${photoFetched.url})`
+    photoWrapper.style.backgroundImage = `url(${photoFetched.url_small})`
 
     const photoDisplay = photoWrapper.querySelector('img')
-    photoDisplay.setAttribute('src', photoFetched.url)
+    photoDisplay.setAttribute('src', photoFetched.url_regular)
 
     const authorLink = photo.querySelector('.photographer > .photographer__link')
     const authorBio = photo.querySelector('.photographer > .photographer__bio')
@@ -66,7 +67,7 @@ const showHistory = () => {
         photoItem.setAttribute('data-photoid', photo.id)
 
         const photoDisplay = document.createElement('img')
-        photoDisplay.setAttribute('src', photo.url)
+        photoDisplay.setAttribute('src', photo.url_small)
         photoDisplay.style.display = 'none'
 
         const photoInfo = document.createElement('div')
